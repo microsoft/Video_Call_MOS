@@ -1,14 +1,22 @@
-# Project
+# Video Call MOS
+This repository provides the code and dataset for the Video Call MOS prediction model, submited to ICASSP 2023.
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+## Dataset
+The dataset can be download here:
+https://challenge.blob.core.windows.net/video-call-mos/video_call_dataset.zip
 
-As the maintainer of this project, please make a few updates:
+## Training
+To train the model use
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+```
+python model/train_video_mos.py   
+```
+## Evaluating
+To evaluate the model and analyze the results use:
+
+```
+python model/evaluate_model.py   
+```
 
 ## Contributing
 
