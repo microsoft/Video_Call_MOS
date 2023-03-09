@@ -40,14 +40,14 @@ https://challenge.blob.core.windows.net/video-call-mos/video_call_mos_dataset.zi
 The dataset contains 10 reference videos and 1467 degraded videos that were transmitted via Microsoft Teams calls and contain various typical video call distortions. It also includes crowdsourced subjective video MOS ratings (see paper for more info).
 
 ## Evaluating
-To evaluate the default VCM or a newly trained model, the following script can be run. It also plots correlation diagrams and per-frame MOS predictions and compares the results to VMAF. The path variables `data_dir` and `csv_file` within the script need to be updated before executing. The script is using the pre-computed VMAF features and alignment indices in the `vmaf_results` CSVs as inputs to the VCM model. For a new dataset, new CSV files can be written by using the `run_video_call_mos_on_dataset.py` script (see [Model inference](#Model-inference)). Further, note that the provided dataset is a subset of the one presented in the paper and the results slightly differ.
+To evaluate the default VCM or a newly trained model, the following script can be run. It also plots correlation diagrams and per-frame MOS predictions and compares the results to VMAF. The path variables `data_dir` and `csv_file` within the script need to be updated before executing. The script is using the pre-computed VMAF features and alignment indices loaded from CSV files as inputs to the VCM model. For a new dataset, new CSV files can be written by using the `run_video_call_mos_on_dataset.py` script (see [Model inference](#Model-inference)). Further, note that the provided dataset is a subset of the one presented in the paper and the results slightly differ.
 
 ```bash
 python run_evaluation_and_plotting.py   
 ```
 
 ## Model inference
-To predict the MOS score of a single video file with reference via the command line, the following command can be used:
+To predict the MOS score of a single video file, the following command can be used:
 ```bash
 python run_video_call_mos.py --deg_video /path/to/video_call_mos_set/data/deg_0001.mp4 --ref_video /path/to/video_call_mos_set/data/ref_01.mp4 --results_dir /path/to/video_call_mos_set/results --tmp_dir /path/to/video_call_mos_set/tmp
 ```
@@ -59,7 +59,7 @@ python run_video_call_mos_on_dataset.py
 ```
 
 ## Training
-To train a new Video Call MOS model following script can be used. It uses pre-computed VMAF features and alignment indices of the `vmaf_results` CSVs as inputs. For a new dataset, new CSV files can be written by using the `run_video_call_mos_on_dataset.py` script (see [Model inference](#Model-inference)). The path variables within the script need to be updated before running the script. The training parameters, such as, which input features to use, the number of epochs or LSTM layers and hidden units size may be adjusted as well.
+To train a new Video Call MOS model following script can be used. It uses pre-computed VMAF features and alignment indices loaded from CSV files as inputs. For a new dataset, new CSV files can be written by using the `run_video_call_mos_on_dataset.py` script (see [Model inference](#Model-inference)). The path variables within the script need to be updated before running the script. The training parameters, such as, which input features to use, the number of epochs or LSTM layers and hidden units size may be adjusted as well.
 
 ```bash
 python run_training.py   
