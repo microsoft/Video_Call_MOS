@@ -10,7 +10,7 @@ The prediction is performed with the following steps.
  3. Frame freeze feature computation based on time-alignment indices
  4. Predict MOS with Video Call MOS LSTM, using VMAF and frame freeze features as input
 
-## Validation Results
+## Performance
 In comparison to VMAF, the proposed VCM model performs better on videos with temporal distortions. The following figure shows how VMAF overestimates the quality for multiple samples in the validation dataset.
 <br><br><img src="imgs/results.png" width="500" >
 
@@ -50,7 +50,7 @@ https://challenge.blob.core.windows.net/video-call-mos/video_call_mos_set.zip
 The dataset contains 10 reference videos and 1467 degraded videos that were transmitted via Microsoft Teams calls and contain various typical video call distortions. It also includes [P.910 Crowd](https://github.com/microsoft/P.910) subjective video MOS ratings (see paper for more info).
 
 ## Evaluating
-To evaluate the default VCM or a newly trained model, the following script can be run. It also plots correlation diagrams and per-frame MOS predictions and compares the results to VMAF (it should reproduce exactly the same results as shown above in [Validation results](#Validation-results)). The path variables `data_dir` and `csv_file` within the script need to be updated before executing. 
+To evaluate the default VCM or a newly trained model, the following script can be run. It also plots correlation diagrams and per-frame MOS predictions and compares the results to VMAF (it should reproduce exactly the same results as shown above in [Performance](#Performance)). The path variables `data_dir` and `csv_file` within the script need to be updated before executing. 
 
 ```bash
 python run_evaluation_and_plotting.py   
