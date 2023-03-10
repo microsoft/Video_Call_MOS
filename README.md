@@ -10,7 +10,7 @@ The prediction is performed with the following steps.
  3. Frame freeze feature computation based on time-alignment indices
  4. Predict MOS with Video Call MOS LSTM, using VMAF and frame freeze features as input
 
-## Validation results
+## Validation Results
 In comparison to VMAF, the proposed VCM model performs better on videos with temporal distortions. The following figure shows how VMAF overestimates the quality for multiple samples in the validation dataset.
 <br><br><img src="imgs/results.png" width="500" >
 
@@ -56,9 +56,9 @@ To evaluate the default VCM or a newly trained model, the following script can b
 python run_evaluation_and_plotting.py   
 ```
 
-The script is using the pre-computed VMAF features and alignment indices loaded from CSV files as inputs to the VCM model. For a new dataset, new CSV files can be written by using the `run_video_call_mos_on_dataset.py` script (see [Model inference](#Model-inference)).
+The script is using the pre-computed VMAF features and alignment indices loaded from CSV files as inputs to the VCM model. For a new dataset, new CSV files can be written by using the `run_video_call_mos_on_dataset.py` script (see [Video Quality Prediction](#Video-Quality-Prediction)).
 
-## Model inference
+## Video Quality Prediction
 To predict the MOS score of a single video file, the following command can be used:
 ```bash
 python run_video_call_mos.py --deg_video /path/to/video_call_mos_set/data/deg_0001.mp4 --ref_video /path/to/video_call_mos_set/data/ref_01.mp4 --results_dir /path/to/video_call_mos_set/results --tmp_dir /path/to/video_call_mos_set/tmp
@@ -71,13 +71,13 @@ python run_video_call_mos_on_dataset.py
 ```
 
 ## Training
-To train a new Video Call MOS model following script can be used. It uses pre-computed VMAF features and alignment indices loaded from CSV files as inputs. For a new dataset, new CSV files can be written by using the `run_video_call_mos_on_dataset.py` script (see [Model inference](#Model-inference)). The path variables within the script need to be updated before running the script. The training parameters, such as, which input features to use, the number of epochs or LSTM layers and hidden units size may be adjusted as well.
+To train a new Video Call MOS model following script can be used. It uses pre-computed VMAF features and alignment indices loaded from CSV files as inputs. For a new dataset, new CSV files can be written by using the `run_video_call_mos_on_dataset.py` script (see [Video Quality Prediction](#Video-Quality-Prediction)). The path variables within the script need to be updated before running the script. The training parameters, such as, which input features to use, the number of epochs or LSTM layers and hidden units size may be adjusted as well.
 
 ```bash
 python run_training.py   
 ```
 
-## Draw QR-code markers
+## Draw QR-code Markers
 Because videos received during a video call are prone to frame freezes, skips and playback rate changes, it is necessary to align the degraded videos to the clean reference video. In order to allow for a robust time alignment, we apply QR-code markers to the source videos. The reference videos in the Video Call MOS dataset are already prepared with QR-code markers. To draw markers on new reference videos, the following script can be used. The paths and parameters within the script need to be updated. Please note that the script expects 1920x1080 MP4 video files but could be adjusted for other formats.
 
 ```bash
