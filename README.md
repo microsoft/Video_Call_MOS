@@ -24,7 +24,7 @@ The next figure shows a similar effect but instead with multiple shorter frame f
 For more information see the paper here (tbd)
 
 ## Requirements
-The code in this repository was tested with Ubuntu. Adjustments to the FFMPEG commands may be necessary when running on Windows.
+The code in this repository was tested on Ubuntu. Adjustments to the FFMPEG commands may be necessary when running on Windows.
 To perform reference video alignment and VMAF computation, FFMPEG with VMAF support is required, which can be installed on Ubuntu via the following steps (optional for training and evaluation on the VCM dataset, as pre-computed VMAF features are available in CSV files).
 See also https://www.johnvansickle.com/ffmpeg/faq for more info on the FFMPEG installation.
 
