@@ -11,14 +11,14 @@ The prediction is performed with the following steps.
  4. Predict MOS with Video Call MOS LSTM, using VMAF and frame freeze features as input
 
 ## Validation results and VMAF comparison
-The proposed VCM model outperforms VMAF since VMAF overestimates the quality of videos that contain temporal distortions. The results on the validation data are presented in following figure.
-<br><img src="imgs/results.png" width="500" >
+In comparison to VMAF, the VCM model proposed in this study performs better on videos with temporal distortions. The results on the validation data are shown in the figure below.
+<br><br><img src="imgs/results.png" width="500" >
 
 The following example shows the per-frame predictions for a video that is impaired by a single freeze of around 1 second. According to the crowdsourced ratings the ground truth video quality MOS is 2.95. Because VMAF does not take the freeze into acount, it overestimates the quality with a score of 3.52. In contrast, the proposed VCM model lowers the quality predictions during the frozen frames, such that the overall MOS prediction results to a score very close to the ground truth.
-<br><img src="imgs/example_1.png" width="500" >
+<br><br><img src="imgs/example_1.png" width="500" >
 
 The next figure shows a similar effect but instead with multiple shorter frame freezes.
-<br><img src="imgs/example_2.png" width="500" >
+<br><br><img src="imgs/example_2.png" width="500" >
 
 
 For more information see the paper here (tba)
