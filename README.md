@@ -65,7 +65,7 @@ python run_video_call_mos.py --deg_video /path/to/video_call_mos_set/data/deg_00
 ```
 This command requires longer computation time and will run the inference end-to-end, including QR-code detection, reference alignment, VMAF computation, and Video Call MOS LSTM model. Note that the code expects 1920x1080 MP4 video files and the reference and degraded videos need to have QR-code markers drawn onto them (see [Draw QR-code markers](#Draw-QR-code-markers)).
 
-To run the Video Call MOS on a dataset provided via CSV file, the following script can be used (the paths within the script need to be updated):
+To run the Video Call MOS model on a dataset provided via CSV file, the following script can be used (the paths within the script need to be updated):
 ```bash
 python run_video_call_mos_on_dataset.py
 ```
