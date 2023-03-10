@@ -1,8 +1,8 @@
 # Video Call MOS
-This repository provides the code and dataset for the Video Call MOS prediction model, accepted at ICASSP 2023. 
+This repository provides the code and dataset for the Video Call MOS (VCM) prediction model, accepted at ICASSP 2023. 
 The model predicts the perceived video quality of videos that were transmitted via videoconferencing calls.
 In contrast to other state-of-the-art video mos models it is able to take temporal distortions, such as video freezes, into account.
-We further provide a dataset with live Microsoft Teams video recordings and crowdsourced subjective quality ratings. 
+We further provide a dataset with live Microsoft Teams video recordings and crowdsourced subjective quality ratings using [P.910 Crowd](https://github.com/microsoft/P.910). 
 The prediction is performed with the following steps.
 
  1. Time-alignment of degraded video to reference via QR-code marker detection
@@ -10,12 +10,22 @@ The prediction is performed with the following steps.
  3. Frame freeze feature computation based on time-alignment indices
  4. Predict MOS with Video Call MOS LSTM, using VMAF and frame freeze features as input
 
+## Validation results and VMAF comparison
+The proposed VCM model outperforms VMAF since VMAF overestimates the quality of videos that contain temporal distortions. The results on the validation data are presented in following figure.
+<br><img src="imgs/results.png" width="500" >
+
+The following example shows the per-frame predictions for a video that is impaired by a single freeze of around 1 second. According to the crowdsourced ratings the ground truth video quality MOS is 2.95. Because VMAF does not take the freeze into acount, it overestimates the quality with a score of 3.52. In contrast, the proposed VCM model lowers the quality predictions during the frozen frames, such that the overall MOS prediction results to a score very close to the ground truth.
+<br><img src="imgs/example_1.png" width="500" >
+
+The next figure shows a similar effect but instead with multiple shorter frame freezes.
+<br><img src="imgs/example_2.png" width="500" >
+
+
 For more information see the paper here (tba)
 
-## Installation
-The code in this repository is compatible with Ubuntu. Adjustments to the FFMPEG commands may be necessary when running on Windows.
-To perform reference video alignment and VMAF computation, FFMPEG with VMAF support is required, which can be installed on Ubuntu via 
-the following steps (optional for training and evaluation on the VCM dataset, as pre-computed VMAF features are available in CSV files).
+## Requirements
+The code in this repository was tested with Ubuntu. Adjustments to the FFMPEG commands may be necessary when running on Windows.
+To perform reference video alignment and VMAF computation, FFMPEG with VMAF support is required, which can be installed on Ubuntu via the following steps (optional for training and evaluation on the VCM dataset, as pre-computed VMAF features are available in CSV files).
 See also https://www.johnvansickle.com/ffmpeg/faq for more info on the FFMPEG installation.
 
 ```bash
@@ -37,7 +47,7 @@ Before running the code, it is necessary to download the Video Call MOS dataset.
 
 https://challenge.blob.core.windows.net/video-call-mos/video_call_mos_dataset.zip
 
-The dataset contains 10 reference videos and 1467 degraded videos that were transmitted via Microsoft Teams calls and contain various typical video call distortions. It also includes crowdsourced subjective video MOS ratings (see paper for more info).
+The dataset contains 10 reference videos and 1467 degraded videos that were transmitted via Microsoft Teams calls and contain various typical video call distortions. It also includes [P.910 Crowd](https://github.com/microsoft/P.910) subjective video MOS ratings (see paper for more info).
 
 ## Evaluating
 To evaluate the default VCM or a newly trained model, the following script can be run. It also plots correlation diagrams and per-frame MOS predictions and compares the results to VMAF. The path variables `data_dir` and `csv_file` within the script need to be updated before executing. The script is using the pre-computed VMAF features and alignment indices loaded from CSV files as inputs to the VCM model. For a new dataset, new CSV files can be written by using the `run_video_call_mos_on_dataset.py` script (see [Model inference](#Model-inference)). Further, note that the provided dataset is a subset of the one presented in the paper and the results slightly differ.
