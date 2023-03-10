@@ -5,7 +5,7 @@ In contrast to other state-of-the-art video mos models it is able to take tempor
 We further provide a dataset with live Microsoft Teams video recordings and crowdsourced subjective quality ratings using [P.910 Crowd](https://github.com/microsoft/P.910). 
 The prediction is performed with the following steps.
 
- 1. Time-alignment of degraded video to reference via QR-code marker detection
+ 1. Time-alignment of reference video via QR-code marker detection
  2. VMAF Computation
  3. Frame freeze feature computation based on time-alignment indices
  4. Predict MOS with Video Call MOS LSTM, using VMAF and frame freeze features as input
@@ -14,7 +14,7 @@ The prediction is performed with the following steps.
 In comparison to VMAF, the proposed VCM model performs better on videos with temporal distortions. The following figure shows how VMAF overestimates the quality for multiple samples in the validation dataset.
 <br><br><img src="imgs/results.png" width="500" >
 
-The following example shows the per-frame predictions for a video that is impaired by a single freeze of around 1 second. According to the crowdsourced ratings, the ground truth video quality MOS is 2.95. Because VMAF does not take the freeze into acount, it overestimates the quality with a score of 3.52. In contrast, the proposed VCM model lowers the quality predictions during the frozen frames, such that the overall MOS prediction results to a score very close to the ground truth.
+The following example shows the per-frame predictions for a video that is impaired by a single freeze of around 1 second. According to the crowdsourced ratings, the ground truth video quality MOS is 2.95. Because VMAF does not take the freeze into acount, it overestimates the quality with a score of 3.52. In contrast, the proposed VCM model reduces the predictions during frozen frames, resulting in an overall MOS score close to the ground truth.
 <br><br><img src="imgs/example_1.png" width="500" >
 
 The next figure shows a similar effect but instead with multiple shorter frame freezes.
