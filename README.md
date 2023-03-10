@@ -47,7 +47,7 @@ Before running the code, it is necessary to download the Video Call MOS dataset.
 
 https://challenge.blob.core.windows.net/video-call-mos/video_call_mos_set.zip
 
-The dataset contains 10 reference videos and 1467 degraded videos that were transmitted via Microsoft Teams calls and contain various typical video call distortions. It also includes [P.910 Crowd](https://github.com/microsoft/P.910) subjective video MOS ratings (see paper for more info).
+The dataset contains 10 reference videos and 1467 degraded videos. The videos were transmitted via Microsoft Teams calls in 83 different network conditions and contain various typical videoconferencing impairments. It also includes [P.910 Crowd](https://github.com/microsoft/P.910) subjective video MOS ratings (see paper for more info).
 
 ## Evaluating
 To evaluate the default VCM or a newly trained model, the following script can be run. It also plots correlation diagrams and per-frame MOS predictions and compares the results to VMAF (it should reproduce exactly the same results as shown above in [Performance](#Performance)). The path variables `data_dir` and `csv_file` within the script need to be updated before executing. 
