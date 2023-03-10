@@ -14,7 +14,7 @@ The prediction is performed with the following steps.
 In comparison to VMAF, the proposed VCM model performs better on videos with temporal distortions. The following figure shows how VMAF overestimates the quality for multiple samples in the validation dataset.
 <br><br><img src="imgs/results.png" width="500" >
 
-The following example shows the per-frame predictions for a video that is impaired by a single freeze of around 1 second. According to the crowdsourced ratings, the ground truth video quality MOS is 2.95. Because VMAF does not take the freeze into acount, it overestimates the quality with a score of 3.52. In contrast, the proposed VCM model reduces the predictions during frozen frames, resulting in an overall MOS score close to the ground truth.
+The following example shows the per-frame predictions for a video that is impaired by a single freeze of around 1 second. According to the crowdsourced ratings, the ground truth video quality MOS is 2.95. Because VMAF does not take the temporal freeze but only the reduced resolution / bitrate into acount, it overestimates the quality with a score of 3.52. In contrast, the proposed VCM model reduces the predictions during frozen frames, resulting in an overall MOS score close to the ground truth.
 <br><br><img src="imgs/example_1.png" width="500" >
 
 The next figure shows a similar effect but instead with multiple shorter frame freezes.
