@@ -45,7 +45,7 @@ pip install requirements.txt
 ## Dataset
 Before running the code, it is necessary to download the Video Call MOS dataset. Please note that the dataset is a subset of the one used in the paper. It can be found here:
 
-https://challenge.blob.core.windows.net/video-call-mos/video_call_mos_dataset.zip
+https://challenge.blob.core.windows.net/video-call-mos/video_call_mos_set.zip
 
 The dataset contains 10 reference videos and 1467 degraded videos that were transmitted via Microsoft Teams calls and contain various typical video call distortions. It also includes [P.910 Crowd](https://github.com/microsoft/P.910) subjective video MOS ratings (see paper for more info).
 
