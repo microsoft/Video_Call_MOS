@@ -1,5 +1,5 @@
 # Video Call MOS
-This repository provides the code and dataset for the Video Call MOS (VCM) prediction model, accepted at ICASSP 2023. 
+This repository provides the code and dataset for the Video Call MOS (VCM) prediction model, accepted at ICASSP 2023.
 The model predicts the perceived video quality of videos that were transmitted via videoconferencing calls.
 In contrast to other state-of-the-art video MOS models it is able to take temporal distortions, such as video freezes, into account.
 We further provide a dataset with live Microsoft Teams video recordings and crowdsourced subjective quality ratings using [P.910 Crowd](https://github.com/microsoft/P.910). 
@@ -9,6 +9,8 @@ The prediction is performed with the following steps:
  2. VMAF Computation
  3. Frame freeze feature computation based on time-alignment indices
  4. Predict MOS with Video Call MOS LSTM, using VMAF and frame freeze features as input
+
+Link to paper: [Gabriel Mittag, Babak Naderi, Vishak Gopal and Ross Cutler, “LSTM-based Video Quality Prediction Accounting for Temporal Distortions in Videoconferencing Calls,” accepted at ICASSP 2023, 2023.](https://arxiv.org/pdf/2303.12761v1.pdf)
 
 ## Performance
 In comparison to VMAF, the proposed VCM model performs better on videos with temporal distortions. The following figure shows how VMAF overestimates the quality for multiple samples in the validation dataset:
@@ -21,7 +23,7 @@ The next figure shows a similar effect but instead with multiple shorter frame f
 <br><br><img src="imgs/example_2.png" width="500" >
 
 
-For more information see the paper here (tbd)
+Please refer to the [paper](https://arxiv.org/pdf/2303.12761v1.pdf) for more detailed results.
 
 ## Requirements
 The code in this repository was tested on Ubuntu. Adjustments to the FFMPEG commands may be necessary when running on Windows.
@@ -43,11 +45,11 @@ pip install requirements.txt
 ```
 
 ## Dataset
-Before running the code, it is necessary to download the Video Call MOS dataset. Please note that the dataset is a subset of the one used in the paper. It can be found here:
+Before running the code, it is necessary to download the Video Call MOS dataset. Please note that the dataset is a subset of the one used in the [paper](https://arxiv.org/pdf/2303.12761v1.pdf). It can be found here:
 
 https://challenge.blob.core.windows.net/video-call-mos/video_call_mos_set.zip
 
-The dataset contains 10 reference videos and 1467 degraded videos. The videos were transmitted via Microsoft Teams calls in 83 different network conditions and contain various typical videoconferencing impairments. It also includes [P.910 Crowd](https://github.com/microsoft/P.910) subjective video MOS ratings (see paper for more info).
+The dataset contains 10 reference videos and 1467 degraded videos. The videos were transmitted via Microsoft Teams calls in 83 different network conditions and contain various typical videoconferencing impairments. It also includes [P.910 Crowd](https://github.com/microsoft/P.910) subjective video MOS ratings (see [paper](https://arxiv.org/pdf/2303.12761v1.pdf) for more info).
 
 ## Evaluating
 To evaluate the default VCM or a newly trained model, the following script can be run. It also plots correlation diagrams and per-frame MOS predictions and compares the results to VMAF (it should reproduce exactly the same results as shown above in [Performance](#Performance)). The path variables `data_dir` and `csv_file` within the script need to be updated before executing. 
@@ -85,13 +87,13 @@ python run_draw_qr_codes.py
 ```
 
 ## Citation
-If you use the code or dataset in a publication please cite the following paper:
+If you use the code or dataset in a publication please cite the following [paper](https://arxiv.org/pdf/2303.12761v1.pdf):
 
 ```BibTex
 @inproceedings{vcm_icassp,
   title={LSTM-based Video Quality Prediction Accounting for Temporal Distortions in Videoconferencing Calls},
   author={Mittag, Gabriel and Naderi, Babak and Gopal, Vishak and Cutler, Ross},
-  booktitle={Accepted at ICASSP},
+  booktitle={accepted at ICASSP 2023},
   year={2023}
 }
 ```
