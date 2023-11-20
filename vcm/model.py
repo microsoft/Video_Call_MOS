@@ -52,7 +52,13 @@ def get_features(df_features, features):
     return x, df_features
 
 class VideoCallMosModel():
-    def __init__(self, checkpoint="vcm/video_call_mos_weights.pt"):
+    def __init__(self, checkpoint=None):
+        if checkpoint is None:
+            try:
+                import pkg_resources
+                checkpoint = pkg_resources.resource_filename('vcm', 'video_call_mos_weights.pt')
+            except pkg_resources.DistributionNotFound:
+                checkpoint = 'vcm/video_call_mos_weights.pt'
         self.dev = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
         print(f"Running on {self.dev}")
         self.model = VcmNet()
