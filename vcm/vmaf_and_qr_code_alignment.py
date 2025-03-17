@@ -75,10 +75,19 @@ def detect_frames(
     verbosity=1,
     ):
     cap_deg = cv2.VideoCapture(deg_video)
+    
+    # Check FPS
+    fps = cap_deg.get(cv2.CAP_PROP_FPS)
+    if fps != 30:
+        raise ValueError(f"Error: Video FPS is {fps:.2f}, but expected 30 FPS.")    
+    
     frames_deg = int(cap_deg.get(cv2.CAP_PROP_FRAME_COUNT))
     ref_frames = []
     for i in range(frames_deg):
-        _ , img = cap_deg.read()
+        ret , img = cap_deg.read()
+        if not ret:
+            print(f"Warning: Unable to read frame {i+1} of {frames_deg}. The video may report more frames than available or the frame might be incomplete.")
+            break        
         detected_frame = detect_single_frame(img, vidqr_marker_pos, vidqr_buffer, vidqr_border_size)
         if detected_frame is None:
             buffer = -30
