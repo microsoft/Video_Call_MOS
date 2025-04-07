@@ -1,6 +1,6 @@
 matplotlib==3.6.3
 numpy==1.24.1
-opencv_contrib_python==4.7.0.68
+opencv_contrib_python==4.8.1.78
 pandas==1.5.3
 pyzbar==0.1.9
 qrcode==7.4
