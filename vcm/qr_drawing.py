@@ -77,6 +77,9 @@ def draw_qr(
         img_qr = qr.make_image(fill_color="black", back_color="white")
         img_qr = np.array(img_qr.convert('RGB'))[:, :, ::-1].copy()
 
+        if n_markers > 4:
+            n_markers = 4 # 4 markers at most
+
         if n_markers==1:
             markers = [[1080-dist-img_qr.shape[0],1920-dist-img_qr.shape[1]]]
         elif n_markers==2:
@@ -124,16 +127,12 @@ def draw_qr(
     run_process(ff_args)
     shutil.rmtree(tmp_dir)
 
-    marker_pos = {
-        'marker_1_x1': markers[0][1],
-        'marker_1_x2': markers[0][1]+img_qr.shape[0], 
-        'marker_1_y1': markers[0][0],
-        'marker_1_y2': markers[0][0]+img_qr.shape[1], 
-        'marker_2_x1': markers[1][1], 
-        'marker_2_x2': markers[1][1]+img_qr.shape[0], 
-        'marker_2_y1': markers[1][0],
-        'marker_2_y2': markers[1][0]+img_qr.shape[1], 
-        }
+    marker_pos = {}
+    for i in range(0, n_markers):
+        marker_pos['marker_'+str(i)+'_x1'] = markers[i][1],
+        marker_pos['marker_'+str(i)+'_x2'] = markers[i][1]+img_qr.shape[0],
+        marker_pos['marker_'+str(i)+'_y1'] = markers[i][0],
+        marker_pos['marker_'+str(i)+'_y2'] = markers[i][0]+img_qr.shape[1],
 
     return marker_pos, output_video
 
